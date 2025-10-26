@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Inventario de Árboles</string>
+    <string name="nuevo_proyecto">Nuevo Proyecto</string>
+    <string name="editar_proyecto">Editar Proyecto</string>
+    <string name="banco_especies">Banco de Especies</string>
+    <string name="configuraciones">Configuraciones</string>
+    <string name="nombre_proyecto">Nombre del Proyecto</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="tomar_foto">Tomar Foto</string>
+    <string name="marcar_gps">Marcar Posición GPS</string>
+    <string name="especie">Especie</string>
+    <string name="altura">Altura (m)</string>
+    <string name="radio_copa">Radio de Copa (m)</string>
+    <string name="forma_copa">Forma de Copa</string>
+    <string name="nueva_captura">Nueva Captura</string>
+    <string name="terminar_capturas">Terminar Capturas</string>
+
+    <string name="perm_cam_title">Permiso de cámara</string>
+    <string name="perm_cam_msg">Se necesita acceso a la cámara para tomar fotos.</string>
+    <string name="perm_loc_title">Permiso de ubicación</string>
+    <string name="perm_loc_msg">Se necesita ubicación para registrar coordenadas GPS.</string>
+    <string name="config_uso_gps">Usar GPS</string>
+    <string name="config_prefijo_foto">Prefijo de archivo de foto</string>
+    <string name="guardar">Guardar</string>
+    <string name="guardado_ok">Configuración guardada</string>
+
+</resources>

@@ -1,0 +1,12 @@
+<resources>
+    <string-array name="formas_copa">
+        <item>Seleccione forma</item>
+        <item>Esférica</item>
+        <item>Cónica</item>
+        <item>Columnar</item>
+        <item>Piramidal</item>
+        <item>Extendida</item>
+        <item>Irregular</item>
+        <item>Llora</item>
+    </string-array>
+</resources>

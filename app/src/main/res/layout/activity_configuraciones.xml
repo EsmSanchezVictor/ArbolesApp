@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <Switch
+        android:id="@+id/swGps"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/config_uso_gps" />
+
+    <EditText
+        android:id="@+id/etPrefijo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/config_prefijo_foto"
+        android:inputType="textCapCharacters"
+        android:maxLength="20"
+        android:layout_marginTop="16dp" />
+
+    <Button
+        android:id="@+id/btnGuardar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/guardar"
+        android:layout_marginTop="24dp" />
+</LinearLayout>

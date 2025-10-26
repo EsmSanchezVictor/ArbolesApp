@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/imgPreview"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:contentDescription="Preview" />
+
+        <Button
+            android:id="@+id/btnTomarFoto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tomar_foto" />
+
+        <EditText
+            android:id="@+id/etEspecie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/especie" />
+
+        <EditText
+            android:id="@+id/etAltura"
+            android:inputType="numberDecimal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/altura" />
+
+        <EditText
+            android:id="@+id/etRadioCopa"
+            android:inputType="numberDecimal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/radio_copa" />
+
+        <Spinner
+            android:id="@+id/spFormaCopa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btnMarcarGPS"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/marcar_gps" />
+
+        <Button
+            android:id="@+id/btnAceptar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/aceptar" />
+
+        <Button
+            android:id="@+id/btnNuevaCaptura"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/nueva_captura" />
+
+        <Button
+            android:id="@+id/btnTerminar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/terminar_capturas" />
+
+    </LinearLayout>
+</ScrollView>

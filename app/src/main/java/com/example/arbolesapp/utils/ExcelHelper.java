@@ -1,5 +1,5 @@
 package com.example.arbolesapp.utils;
-
+import java.io.FileInputStream;
 import android.util.Log;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -42,7 +42,9 @@ public class ExcelHelper {
                                           String altura, String radioCopa, String formaCopa,
                                           double latitud, double longitud, String archivoFoto) {
         try {
-            Workbook workbook = WorkbookFactory.create(archivoExcel);
+            FileInputStream inputStream = new FileInputStream(archivoExcel);
+            Workbook workbook = WorkbookFactory.create(inputStream);
+            inputStream.close();
             Sheet sheet = workbook.getSheetAt(0);
 
             int lastRow = sheet.getLastRowNum();

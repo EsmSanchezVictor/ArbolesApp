@@ -32,10 +32,6 @@
     <string name="project_export_message">Exportar %1$s</string>
     <string name="project_action_delete">Eliminar</string>
     <string name="project_export_preparing">Preparando exportación de %1$s…</string>
-    <string name="project_export_preparing">Preparando exportación de %1$s…</string>
-    <string name="project_export_success">Proyecto listo para compartir.</string>
-    <string name="project_export_error">No se pudo exportar el proyecto.</string>
-    <string name="project_share_title">Compartir %1$s</string>
     <string name="project_export_success">Proyecto listo para compartir.</string>
     <string name="project_export_error">No se pudo exportar el proyecto.</string>
     <string name="project_share_title">Compartir %1$s</string>

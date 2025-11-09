@@ -13,8 +13,8 @@ import java.util.Locale;
 public class ExcelHelper {
 
     public static boolean crearArchivoExcel(File carpeta, String nombreProyecto) {
-        try {
-            Workbook workbook = new XSSFWorkbook();
+
+        try (Workbook workbook = new XSSFWorkbook()) {
             Sheet sheet = workbook.createSheet("Arboles");
 
             Row headerRow = sheet.createRow(0);
@@ -26,10 +26,14 @@ public class ExcelHelper {
             }
 
             File archivoExcel = new File(carpeta, nombreProyecto + ".xlsx");
-            FileOutputStream outputStream = new FileOutputStream(archivoExcel);
-            workbook.write(outputStream);
-            workbook.close();
-            outputStream.close();
+            if (!carpeta.exists() && !carpeta.mkdirs()) {
+                Log.e("ExcelHelper", "No se pudo crear la carpeta del proyecto: " + carpeta.getAbsolutePath());
+                return false;
+            }
+            try (FileOutputStream outputStream = new FileOutputStream(archivoExcel)) {
+                workbook.write(outputStream);
+                outputStream.flush();
+            }
 
             return true;
         } catch (IOException e) {
@@ -41,10 +45,12 @@ public class ExcelHelper {
     public static boolean agregarRegistro(File archivoExcel, String especie,
                                           String altura, String radioCopa, String formaCopa,
                                           double latitud, double longitud, String archivoFoto) {
-        try {
-            FileInputStream inputStream = new FileInputStream(archivoExcel);
-            Workbook workbook = WorkbookFactory.create(inputStream);
-            inputStream.close();
+        if (archivoExcel == null || !archivoExcel.exists()) {
+            Log.e("ExcelHelper", "El archivo de Excel no existe: " + (archivoExcel == null ? "null" : archivoExcel.getAbsolutePath()));
+            return false;
+        }
+        try (FileInputStream inputStream = new FileInputStream(archivoExcel);
+             Workbook workbook = WorkbookFactory.create(inputStream)) {
             Sheet sheet = workbook.getSheetAt(0);
 
             int lastRow = sheet.getLastRowNum();
@@ -64,10 +70,10 @@ public class ExcelHelper {
             newRow.createCell(7).setCellValue(longitud);
             newRow.createCell(8).setCellValue(archivoFoto);
 
-            FileOutputStream outputStream = new FileOutputStream(archivoExcel);
-            workbook.write(outputStream);
-            workbook.close();
-            outputStream.close();
+            try (FileOutputStream outputStream = new FileOutputStream(archivoExcel)) {
+                workbook.write(outputStream);
+                outputStream.flush();
+            }
 
             return true;
         } catch (Exception e) {

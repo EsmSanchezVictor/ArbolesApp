@@ -6,4 +6,10 @@
     <external-files-path
         name="projects"
         path="Projects" />
+    <files-path
+        name="internal_documents"
+        path="Documents" />
+    <files-path
+        name="internal_projects"
+        path="Documents/Projects" />
 </paths>

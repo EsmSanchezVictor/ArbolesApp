@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import android.content.Intent;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -102,14 +102,18 @@ public class EditarProyectoActivity extends AppCompatActivity {
         Toast.makeText(this,
                 getString(R.string.project_export_message, projectDir.getName()),
                 Toast.LENGTH_SHORT).show();
-        // TODO: Implementar exportación real del proyecto
+
     }
 
     private void editProject(File projectDir) {
         Toast.makeText(this,
                 getString(R.string.project_edit_message, projectDir.getName()),
                 Toast.LENGTH_SHORT).show();
-        // TODO: Implementar flujo de edición del proyecto
+        Intent intent = new Intent(this, CapturaArbolActivity.class);
+        intent.putExtra("PROYECTO", projectDir.getName());
+        intent.putExtra("RUTA_CARPETA", projectDir.getAbsolutePath());
+        startActivity(intent);
+
     }
 
     private static class ProjectsAdapter extends RecyclerView.Adapter<ProjectsAdapter.ProjectViewHolder> {

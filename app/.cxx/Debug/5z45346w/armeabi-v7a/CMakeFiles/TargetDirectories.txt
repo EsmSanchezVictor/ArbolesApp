@@ -1,0 +1,3 @@
+D:/GitHub/app/ArbolesApp/app/.cxx/Debug/5z45346w/armeabi-v7a/CMakeFiles/arbolesapp.dir
+D:/GitHub/app/ArbolesApp/app/.cxx/Debug/5z45346w/armeabi-v7a/CMakeFiles/edit_cache.dir
+D:/GitHub/app/ArbolesApp/app/.cxx/Debug/5z45346w/armeabi-v7a/CMakeFiles/rebuild_cache.dir

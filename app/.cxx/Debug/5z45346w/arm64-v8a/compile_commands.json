@@ -1,0 +1,7 @@
+[
+{
+  "directory": "D:/GitHub/app/ArbolesApp/app/.cxx/Debug/5z45346w/arm64-v8a",
+  "command": "C:\\Users\\ESMLAB~1\\AppData\\Local\\Android\\Sdk\\ndk\\261~1.109\\TOOLCH~1\\llvm\\prebuilt\\WINDOW~1\\bin\\CLANG_~1.EXE --target=aarch64-none-linux-android26 --sysroot=\"C:/Users/ESM Lab 00/AppData/Local/Android/Sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/windows-x86_64/sysroot\" -Darbolesapp_EXPORTS -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -fno-limit-debug-info  -fPIC -o CMakeFiles\\arbolesapp.dir\\arbolesapp.cpp.o -c D:\\GitHub\\app\\ArbolesApp\\app\\src\\main\\cpp\\arbolesapp.cpp",
+  "file": "D:\\GitHub\\app\\ArbolesApp\\app\\src\\main\\cpp\\arbolesapp.cpp"
+}
+]

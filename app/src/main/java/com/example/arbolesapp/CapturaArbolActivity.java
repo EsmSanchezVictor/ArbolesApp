@@ -12,6 +12,7 @@ import androidx.core.content.FileProvider;
 import com.example.arbolesapp.utils.ExcelHelper;
 import com.example.arbolesapp.utils.GPSUtils;
 import java.io.File;
+import android.text.TextUtils;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -49,6 +50,7 @@ public class CapturaArbolActivity extends AppCompatActivity {
             finish();
             return;
         }
+
         imgPreview = findViewById(R.id.imgPreview);
         etEspecie = findViewById(R.id.etEspecie);
         etAltura = findViewById(R.id.etAltura);

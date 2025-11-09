@@ -48,7 +48,7 @@
     <string name="project_delete_success">Proyecto %1$s eliminado.</string>
     <string name="project_delete_error">No se pudo eliminar el proyecto.</string>
     <string name="project_more_actions_content_description">Más acciones</string>
-        <string name="projects_storage_error">No se pudo acceder a la carpeta de proyectos.</string>
+    <string name="projects_storage_error">No se pudo acceder a la carpeta de proyectos.</string>
     <string name="project_missing_data">No se recibieron los datos del proyecto. Intente nuevamente.</string>
     <string name="project_capture_storage_error">No se pudo preparar la carpeta del proyecto para guardar la foto.</string>
     <string name="project_photo_rename_error">No se pudo renombrar la foto. Se guardará con el nombre original.</string>

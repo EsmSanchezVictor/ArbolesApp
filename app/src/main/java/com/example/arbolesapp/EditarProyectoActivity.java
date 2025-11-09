@@ -89,7 +89,8 @@ public class EditarProyectoActivity extends AppCompatActivity {
     private void onProjectClick(File projectDir) {
         CharSequence[] options = {
                 getString(R.string.project_action_export),
-                getString(R.string.project_action_edit)
+                getString(R.string.project_action_edit),
+                getString(R.string.project_action_delete)
         };
         new AlertDialog.Builder(this)
                 .setTitle(projectDir.getName())
@@ -106,6 +107,9 @@ public class EditarProyectoActivity extends AppCompatActivity {
             case 1:
                 editProject(projectDir);
                 break;
+            case 2:
+                confirmDeleteProject(projectDir);
+                break;
             default:
                 break;
         }
@@ -113,6 +117,10 @@ public class EditarProyectoActivity extends AppCompatActivity {
     private static final int BUFFER_SIZE = 4096;
 
     private void exportProject(File projectDir) {
+        exportProject(projectDir, null);
+    }
+
+    private void exportProject(File projectDir, Runnable postExportAction) {
         if (projectDir == null || !projectDir.exists()) {
             Toast.makeText(this, R.string.project_export_error, Toast.LENGTH_SHORT).show();
             return;
@@ -133,6 +141,9 @@ public class EditarProyectoActivity extends AppCompatActivity {
                 if (finalZipFile != null) {
                     Toast.makeText(this, R.string.project_export_success, Toast.LENGTH_SHORT).show();
                     shareZipFile(projectDir.getName(), finalZipFile);
+                    if (postExportAction != null) {
+                        postExportAction.run();
+                    }
                 } else {
                     Toast.makeText(this, R.string.project_export_error, Toast.LENGTH_SHORT).show();
                 }
@@ -244,6 +255,59 @@ public class EditarProyectoActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
+
+
+    private void confirmDeleteProject(File projectDir) {
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.project_delete_title)
+                .setMessage(getString(R.string.project_delete_message, projectDir.getName()))
+                .setPositiveButton(R.string.project_delete_confirm, (dialog, which) -> performProjectDeletion(projectDir))
+                .setNeutralButton(R.string.project_delete_export_first, (dialog, which) ->
+                        exportProject(projectDir, () -> performProjectDeletion(projectDir)))
+                .setNegativeButton(android.R.string.cancel, null)
+                .show();
+    }
+
+    private void performProjectDeletion(File projectDir) {
+        new Thread(() -> {
+            boolean deleted = deleteDirectoryRecursively(projectDir);
+            runOnUiThread(() -> {
+                if (deleted) {
+                    Toast.makeText(this,
+                            getString(R.string.project_delete_success, projectDir.getName()),
+                            Toast.LENGTH_SHORT).show();
+                    loadProjects();
+                } else {
+                    Toast.makeText(this, R.string.project_delete_error, Toast.LENGTH_SHORT).show();
+                }
+            });
+        }).start();
+    }
+
+    private boolean deleteDirectoryRecursively(File dir) {
+        if (dir == null || !dir.exists()) {
+            return true;
+        }
+
+        File[] files = dir.listFiles();
+        if (files != null) {
+            for (File file : files) {
+                boolean result;
+                if (file.isDirectory()) {
+                    result = deleteDirectoryRecursively(file);
+                } else {
+                    result = file.delete();
+                }
+                if (!result) {
+                    return false;
+                }
+            }
+        }
+
+        return dir.delete();
+    }
+
+
 
     private static class ProjectsAdapter extends RecyclerView.Adapter<ProjectsAdapter.ProjectViewHolder> {
 

@@ -12,4 +12,7 @@
     <files-path
         name="internal_projects"
         path="Documents/Projects" />
+    <cache-path
+        name="export_cache"
+        path="exports" />
 </paths>

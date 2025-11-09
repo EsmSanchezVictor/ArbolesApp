@@ -1,24 +1,35 @@
 package com.example.arbolesapp;
 
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.content.Intent;
+//import android.content.Intent;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.arbolesapp.utils.FileUtils;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 public class EditarProyectoActivity extends AppCompatActivity {
 
@@ -99,11 +110,127 @@ public class EditarProyectoActivity extends AppCompatActivity {
                 break;
         }
     }
+    private static final int BUFFER_SIZE = 4096;
 
     private void exportProject(File projectDir) {
+        if (projectDir == null || !projectDir.exists()) {
+            Toast.makeText(this, R.string.project_export_error, Toast.LENGTH_SHORT).show();
+            return;
+        }
         Toast.makeText(this,
-                getString(R.string.project_export_message, projectDir.getName()),
+                getString(R.string.project_export_preparing, projectDir.getName()),
                 Toast.LENGTH_SHORT).show();
+
+        new Thread(() -> {
+            File zipFile = null;
+            try {
+                zipFile = createProjectExportZip(projectDir);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            File finalZipFile = zipFile;
+            runOnUiThread(() -> {
+                if (finalZipFile != null) {
+                    Toast.makeText(this, R.string.project_export_success, Toast.LENGTH_SHORT).show();
+                    shareZipFile(projectDir.getName(), finalZipFile);
+                } else {
+                    Toast.makeText(this, R.string.project_export_error, Toast.LENGTH_SHORT).show();
+                }
+            });
+        }).start();
+    }
+
+    private File createProjectExportZip(File projectDir) throws IOException {
+        File exportDir = new File(getCacheDir(), "exports");
+        if (!exportDir.exists() && !exportDir.mkdirs()) {
+            return null;
+        }
+
+        File zipFile = new File(exportDir, projectDir.getName() + ".zip");
+        if (zipFile.exists() && !zipFile.delete()) {
+            return null;
+        }
+
+        final boolean[] addedEntries = {false};
+        try (FileOutputStream fos = new FileOutputStream(zipFile);
+             ZipOutputStream zos = new ZipOutputStream(fos)) {
+            zipDirectory(projectDir, projectDir, zos, addedEntries);
+        }
+
+        if (!addedEntries[0]) {
+            zipFile.delete();
+            return null;
+        }
+
+        return zipFile;
+    }
+
+    private void zipDirectory(File currentDir, File baseDir, ZipOutputStream zos, boolean[] addedEntries) throws IOException {
+        File[] files = currentDir.listFiles();
+        if (files == null) {
+            return;
+        }
+
+        for (File file : files) {
+            if (file.isDirectory()) {
+                zipDirectory(file, baseDir, zos, addedEntries);
+            } else if (shouldIncludeInExport(file)) {
+                String entryName = getRelativePath(baseDir, file);
+                try (FileInputStream fis = new FileInputStream(file)) {
+                    ZipEntry entry = new ZipEntry(entryName);
+                    zos.putNextEntry(entry);
+                    byte[] buffer = new byte[BUFFER_SIZE];
+                    int length;
+                    while ((length = fis.read(buffer)) != -1) {
+                        zos.write(buffer, 0, length);
+                    }
+                    zos.closeEntry();
+                    addedEntries[0] = true;
+                }
+            }
+        }
+    }
+
+    private boolean shouldIncludeInExport(File file) {
+        if (file == null || !file.isFile()) {
+            return false;
+        }
+
+        String name = file.getName().toLowerCase(Locale.ROOT);
+        return name.endsWith(".jpg") || name.endsWith(".jpeg") || name.endsWith(".png") || name.endsWith(".xlsx");
+    }
+
+    private String getRelativePath(File baseDir, File file) {
+        String basePath = baseDir.getAbsolutePath();
+        String filePath = file.getAbsolutePath();
+        if (filePath.startsWith(basePath)) {
+            String relative = filePath.substring(basePath.length());
+            while (relative.startsWith(File.separator)) {
+                relative = relative.substring(1);
+            }
+            return relative.replace(File.separatorChar, '/');
+        }
+        return file.getName();
+    }
+
+    private void shareZipFile(String projectName, File zipFile) {
+        Uri zipUri = FileProvider.getUriForFile(this,
+                "com.example.arbolesapp.fileprovider",
+                zipFile);
+
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent.setType("application/zip");
+        shareIntent.putExtra(Intent.EXTRA_STREAM, zipUri);
+        shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+        PackageManager packageManager = getPackageManager();
+        List<ResolveInfo> activities = packageManager.queryIntentActivities(shareIntent, PackageManager.MATCH_DEFAULT_ONLY);
+        for (ResolveInfo resolveInfo : activities) {
+            grantUriPermission(resolveInfo.activityInfo.packageName, zipUri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        }
+
+        startActivity(Intent.createChooser(shareIntent,
+                getString(R.string.project_share_title, projectName)));
 
     }
 

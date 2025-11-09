@@ -5,6 +5,7 @@ import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
@@ -43,6 +44,12 @@ public class CapturaArbolActivity extends AppCompatActivity {
 
         proyecto = getIntent().getStringExtra("PROYECTO");
         rutaCarpeta = getIntent().getStringExtra("RUTA_CARPETA");
+
+        if (TextUtils.isEmpty(proyecto) || TextUtils.isEmpty(rutaCarpeta)) {
+            Toast.makeText(this, getString(R.string.project_missing_data), Toast.LENGTH_LONG).show();
+            finish();
+            return;
+        }
 
         imgPreview = findViewById(R.id.imgPreview);
         etEspecie = findViewById(R.id.etEspecie);
@@ -125,10 +132,18 @@ public class CapturaArbolActivity extends AppCompatActivity {
     }
 
     private File crearArchivoFoto() {
+        if (TextUtils.isEmpty(rutaCarpeta)) {
+            Toast.makeText(this, getString(R.string.project_capture_storage_error), Toast.LENGTH_SHORT).show();
+            return null;
+        }
+
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
         String imageFileName = "ARBOL_" + timeStamp + "_";
         File storageDir = new File(rutaCarpeta);
-        storageDir.mkdirs();
+        if (!storageDir.exists() && !storageDir.mkdirs()) {
+            Toast.makeText(this, getString(R.string.project_capture_storage_error), Toast.LENGTH_SHORT).show();
+            return null;
+        }
         try {
             File image = File.createTempFile(imageFileName, ".jpg", storageDir);
             rutaFotoActual = image.getAbsolutePath();
@@ -190,12 +205,18 @@ public class CapturaArbolActivity extends AppCompatActivity {
         File fotoOriginal = new File(rutaFotoActual);
         File fotoRenombrada = new File(fotoOriginal.getParent(), nuevoNombre);
         boolean renamed = fotoOriginal.renameTo(fotoRenombrada);
+        if (!renamed) {
+            Toast.makeText(this, getString(R.string.project_photo_rename_error), Toast.LENGTH_SHORT).show();
+        }
+
+        File fotoFinal = renamed ? fotoRenombrada : fotoOriginal;
+        rutaFotoActual = fotoFinal.getAbsolutePath();
 
         boolean ok = com.example.arbolesapp.utils.ExcelHelper.agregarRegistro(
                 new File(rutaCarpeta, proyecto + ".xlsx"),
                 especie, altura, radioCopa, formaCopa,
                 (ubicacionActual==null?0.0:ubicacionActual.getLatitude()), (ubicacionActual==null?0.0:ubicacionActual.getLongitude()),
-                fotoRenombrada.getName()
+                fotoFinal.getName()
         );
 
         if (ok) {

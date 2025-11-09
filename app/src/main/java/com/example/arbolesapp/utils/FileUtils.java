@@ -2,8 +2,9 @@ package com.example.arbolesapp.utils;
 
 import android.content.Context;
 import java.io.File;
-
+import android.os.Environment;
 public class FileUtils {
+    private static final String DOCUMENTS_FOLDER_NAME = Environment.DIRECTORY_DOCUMENTS;
     private static final String PROJECTS_FOLDER_NAME = "Projects";
     public static File crearCarpetaProyecto(Context ctx, String nombreProyecto) {
         File baseDir = obtenerCarpetaBase(ctx);
@@ -18,11 +19,15 @@ public class FileUtils {
         return proyectoDir;
     }
     public static File obtenerCarpetaBase(Context ctx) {
-        File externalDir = ctx.getExternalFilesDir(null);
-        if (externalDir == null) {
+        File internalDir = ctx.getFilesDir();
+        if (internalDir == null) {
             return null;
         }
-        File baseDir = new File(externalDir, PROJECTS_FOLDER_NAME);
+        File documentsDir = new File(internalDir, DOCUMENTS_FOLDER_NAME);
+        if (!documentsDir.exists() && !documentsDir.mkdirs()) {
+            return null;
+        }
+        File baseDir = new File(documentsDir, PROJECTS_FOLDER_NAME);
         if (!baseDir.exists() && !baseDir.mkdirs()) {
             return null;
         }

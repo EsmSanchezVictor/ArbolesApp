@@ -111,7 +111,7 @@ public class EditarProyectoActivity extends AppCompatActivity {
         Toast.makeText(this,
                 getString(R.string.project_edit_message, projectDir.getName()),
                 Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, CapturaArbolActivity.class);
+        Intent intent = new Intent(this, GaleriaProyectoActivity.class);
         intent.putExtra("PROYECTO", projectDir.getName());
         intent.putExtra("RUTA_CARPETA", projectDir.getAbsolutePath());
         startActivity(intent);

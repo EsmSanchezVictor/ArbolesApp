@@ -30,6 +30,8 @@
         <activity android:name=".ConfiguracionesActivity" />
         <activity android:name=".BancoEspeciesActivity" />
         <activity android:name=".EditarProyectoActivity" />
+        <activity android:name=".EditarRegistroActivity" />
+        <activity android:name=".GaleriaProyectoActivity" />
         <activity android:name=".CapturaArbolActivity" />
         <activity android:name=".CrearProyectoActivity" />
         <activity android:name=".MainActivity"

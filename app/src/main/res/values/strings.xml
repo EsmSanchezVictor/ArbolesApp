@@ -37,5 +37,18 @@
     <string name="project_missing_data">No se recibieron los datos del proyecto. Intente nuevamente.</string>
     <string name="project_capture_storage_error">No se pudo preparar la carpeta del proyecto para guardar la foto.</string>
     <string name="project_photo_rename_error">No se pudo renombrar la foto. Se guardará con el nombre original.</string>
+    <string name="project_gallery_title">Fotos de %1$s</string>
+    <string name="gallery_empty_icon_content_description">Sin fotos disponibles</string>
+    <string name="gallery_empty_title">No hay fotos en este proyecto</string>
+    <string name="gallery_empty_message">Captura árboles para verlos aquí y editar su registro.</string>
+    <string name="project_photo_content_description">Foto del árbol</string>
+    <string name="diametro_cota">Diámetro de Cota (m)</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="record_edit_title">Editar registro: %1$s</string>
+    <string name="record_edit_excel_not_found">No se encontró el archivo de datos del proyecto.</string>
+    <string name="record_edit_not_found">No se encontró información asociada a esta foto.</string>
+    <string name="record_edit_validation_error">Complete todos los campos antes de guardar.</string>
+    <string name="record_edit_success">Registro actualizado</string>
+    <string name="record_edit_error">Ocurrió un error al actualizar el registro.</string>
 </resources>
 

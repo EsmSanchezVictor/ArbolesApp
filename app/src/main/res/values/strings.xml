@@ -24,4 +24,14 @@
     <string name="guardar">Guardar</string>
     <string name="guardado_ok">Configuración guardada</string>
 
+    <string name="projects_empty_icon_content_description">Sin proyectos disponibles</string>
+    <string name="projects_empty_title">No hay proyectos disponibles</string>
+    <string name="projects_empty_message">Crea o importa un proyecto para verlo aquí</string>
+    <string name="project_action_export">Exportar</string>
+    <string name="project_action_edit">Editar</string>
+    <string name="project_export_message">Exportar %1$s</string>
+    <string name="project_edit_message">Editar %1$s</string>
+    <string name="project_folder_icon_content_description">Proyecto</string>
+    <string name="project_more_actions_content_description">Más acciones</string>
 </resources>
+

@@ -46,9 +46,11 @@ public class EditarProyectoActivity extends AppCompatActivity {
     }
 
     private void loadProjects() {
-        File baseDir = FileUtils.obtenerCarpetaBase(this);
+        File baseDir = FileUtils.obtenerCarpetaBase(getApplicationContext());
         List<File> proyectos = new ArrayList<>();
-        if (baseDir != null && baseDir.exists()) {
+        if (baseDir == null) {
+            Toast.makeText(this, R.string.projects_storage_error, Toast.LENGTH_SHORT).show();
+        } else {
             File[] directories = baseDir.listFiles();
             if (directories != null) {
                 for (File directory : directories) {

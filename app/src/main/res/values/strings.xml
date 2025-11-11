@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Inventario de Árboles</string>
+    <string name="app_name">TreeMap</string>
     <string name="nuevo_proyecto">Nuevo Proyecto</string>
     <string name="editar_proyecto">Editar Proyecto</string>
     <string name="banco_especies">Banco de Especies</string>

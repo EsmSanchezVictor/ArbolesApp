@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:orientation="vertical"
-    android:padding="24dp"
-    android:gravity="center">
+    android:padding="24dp">
 
     <Button
         android:id="@+id/btnNuevoProyecto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="#4D09A4"
         android:text="@string/nuevo_proyecto" />
 
     <View
@@ -20,6 +23,7 @@
         android:id="@+id/btnEditarProyecto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="#4D09A4"
         android:text="@string/editar_proyecto" />
 
     <View
@@ -30,6 +34,7 @@
         android:id="@+id/btnBancoEspecies"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="#4D09A4"
         android:text="@string/banco_especies" />
 
 
@@ -41,6 +46,7 @@
         android:id="@+id/btnConfiguraciones"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="#4D09A4"
         android:text="@string/configuraciones" />
 
 </LinearLayout>

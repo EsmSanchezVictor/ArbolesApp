@@ -25,7 +25,13 @@
     <string name="guardado_ok">Configuración guardada</string>
     <string name="acerca_de">Acerca de...</string>
     <string name="volver">Volver</string>
-    <string name="about_description">TreeMap es una herramienta pensada para facilitar el inventario y monitoreo de arbolado urbano.</string>
+    <string name="about_description">TreeMap es una herramienta profesional desarrollada
+        por 3Esfera para el relevamiento georreferenciado de especies vegetales, árboles,
+        estructuras y otros elementos del paisaje urbano o rural.
+        Diseñada para acompañar proyectos de planificación ambiental, diseño y gestión de espacios verdes
+        arbolado público o privado, permite registrar datos de campo con precisión,
+        Su interfaz intuitiva,la convierte en una aliada para profesionales en jardinería, paisajismo, ingeniería ambiental, gestión
+        municipal.</string>
     <string name="about_logo_content_description">Logo de TreeMap</string>
     <string name="about_team_content_description">Equipo desarrollador</string>
 

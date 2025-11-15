@@ -23,6 +23,11 @@
     <string name="config_prefijo_foto">Prefijo de archivo de foto</string>
     <string name="guardar">Guardar</string>
     <string name="guardado_ok">Configuración guardada</string>
+    <string name="acerca_de">Acerca de...</string>
+    <string name="volver">Volver</string>
+    <string name="about_description">TreeMap es una herramienta pensada para facilitar el inventario y monitoreo de arbolado urbano.</string>
+    <string name="about_logo_content_description">Logo de TreeMap</string>
+    <string name="about_team_content_description">Equipo desarrollador</string>
 
     <string name="projects_empty_icon_content_description">Sin proyectos disponibles</string>
     <string name="projects_empty_title">No hay proyectos disponibles</string>

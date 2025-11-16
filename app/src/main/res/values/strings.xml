@@ -72,5 +72,20 @@
     <string name="record_edit_validation_error">Complete todos los campos antes de guardar.</string>
     <string name="record_edit_success">Registro actualizado</string>
     <string name="record_edit_error">Ocurrió un error al actualizar el registro.</string>
+    <string name="species_bank_title">Banco de especies</string>
+    <string name="species_bank_search_hint">Ingrese parte del nombre de la especie</string>
+    <string name="species_bank_search_button">Buscar especie en los proyectos</string>
+    <string name="species_bank_search_empty">Ingrese un nombre para buscar.</string>
+    <string name="species_bank_list_button">Listar especies en los proyectos</string>
+    <string name="species_bank_export_button">Exportar banco de especies</string>
+    <string name="species_bank_back_button">Volver</string>
+    <string name="species_bank_results_placeholder">Resultados disponibles</string>
+    <string name="species_bank_results_empty">No se encontraron imágenes para mostrar.</string>
+    <string name="species_bank_no_species">Aún no hay especies registradas.</string>
+    <string name="species_bank_loading_error">No se pudo acceder al banco de especies.</string>
+    <string name="species_bank_export_preparing">Preparando exportación del banco de especies…</string>
+    <string name="species_bank_export_success">Banco de especies listo para compartir.</string>
+    <string name="species_bank_export_error">No se pudo exportar el banco de especies.</string>
+    <string name="species_bank_share_title">Compartir banco de especies</string>
 </resources>
 

@@ -20,18 +20,19 @@
         <TextView
             android:id="@+id/tvAboutDescription"
             android:layout_width="351dp"
-            android:layout_height="343dp"
+            android:layout_height="284dp"
             android:allowUndo="false"
-            android:background="@android:color/white"
             android:elevation="2dp"
+            android:fontFamily="sans-serif-condensed-medium"
             android:padding="16dp"
             android:text="@string/about_description"
             android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="#673AB7" />
 
         <ImageView
-            android:layout_width="146dp"
-            android:layout_height="99dp"
+            android:layout_width="182dp"
+            android:layout_height="112dp"
             android:layout_marginTop="24dp"
             android:adjustViewBounds="false"
             android:contentDescription="@string/about_logo_content_description"

@@ -83,9 +83,16 @@
     <string name="species_bank_results_empty">No se encontraron imágenes para mostrar.</string>
     <string name="species_bank_no_species">Aún no hay especies registradas.</string>
     <string name="species_bank_loading_error">No se pudo acceder al banco de especies.</string>
+    <string name="species_bank_loading">Cargando banco de especies…</string>
     <string name="species_bank_export_preparing">Preparando exportación del banco de especies…</string>
     <string name="species_bank_export_success">Banco de especies listo para compartir.</string>
     <string name="species_bank_export_error">No se pudo exportar el banco de especies.</string>
     <string name="species_bank_share_title">Compartir banco de especies</string>
+    <string name="species_gallery_title">Galería de especies</string>
+    <string name="species_gallery_back_button">Volver a Banco de especies</string>
+    <string name="species_list_title">Especies encontradas</string>
+    <string name="species_list_back_button">Volver a Banco de especies</string>
+    <string name="species_viewer_close">Cerrar visor</string>
+    <string name="species_viewer_image">Imagen del árbol seleccionado</string>
 </resources>
 

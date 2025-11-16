@@ -1,12 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:padding="24dp">
-    <TextView
-        android:layout_width="wrap_content"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Pantalla en construcción" />
-</LinearLayout>
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:id="@+id/textTituloBanco"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/species_bank_title"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp" />
+
+        <EditText
+            android:id="@+id/etBuscarEspecie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/species_bank_search_hint"
+            android:imeOptions="actionSearch"
+            android:inputType="textCapSentences"
+            android:layout_marginBottom="8dp" />
+
+        <Button
+            android:id="@+id/btnBuscarEspecie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/species_bank_search_button"
+            android:layout_marginBottom="12dp" />
+
+        <Button
+            android:id="@+id/btnListarEspecies"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/species_bank_list_button"
+            android:layout_marginBottom="12dp" />
+
+        <Button
+            android:id="@+id/btnExportarBanco"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/species_bank_export_button"
+            android:layout_marginBottom="12dp" />
+
+        <Button
+            android:id="@+id/btnVolverMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/species_bank_back_button"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:id="@+id/textResultados"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/species_bank_results_placeholder"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="16dp" />
+
+    </LinearLayout>
+</ScrollView>

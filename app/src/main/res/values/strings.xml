@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Inventario de Árboles</string>
+    <string name="app_name">TreeMap</string>
     <string name="nuevo_proyecto">Nuevo Proyecto</string>
     <string name="editar_proyecto">Editar Proyecto</string>
     <string name="banco_especies">Banco de Especies</string>
@@ -23,6 +23,11 @@
     <string name="config_prefijo_foto">Prefijo de archivo de foto</string>
     <string name="guardar">Guardar</string>
     <string name="guardado_ok">Configuración guardada</string>
+    <string name="acerca_de">Acerca de...</string>
+    <string name="volver">Volver</string>
+    <string name="about_description">TreeMap es una herramienta pensada para facilitar el inventario y monitoreo del arbolado urbano.</string>
+    <string name="about_logo_content_description">Logo de TreeMap</string>
+    <string name="about_team_content_description">Equipo desarrollador</string>
 
     <string name="projects_empty_icon_content_description">Sin proyectos disponibles</string>
     <string name="projects_empty_title">No hay proyectos disponibles</string>
@@ -61,5 +66,27 @@
     <string name="record_edit_validation_error">Complete todos los campos antes de guardar.</string>
     <string name="record_edit_success">Registro actualizado</string>
     <string name="record_edit_error">Ocurrió un error al actualizar el registro.</string>
+    <string name="species_bank_title">Banco de especies</string>
+    <string name="species_bank_search_hint">Ingrese parte del nombre de la especie</string>
+    <string name="species_bank_search_button">Buscar especie en los proyectos</string>
+    <string name="species_bank_search_empty">Ingrese un nombre para buscar.</string>
+    <string name="species_bank_list_button">Listar especies en los proyectos</string>
+    <string name="species_bank_export_button">Exportar banco de especies</string>
+    <string name="species_bank_back_button">Volver</string>
+    <string name="species_bank_results_placeholder">Resultados disponibles</string>
+    <string name="species_bank_results_empty">No se encontraron imágenes para mostrar.</string>
+    <string name="species_bank_no_species">Aún no hay especies registradas.</string>
+    <string name="species_bank_loading_error">No se pudo acceder al banco de especies.</string>
+    <string name="species_bank_loading">Cargando banco de especies…</string>
+    <string name="species_bank_export_preparing">Preparando exportación del banco de especies…</string>
+    <string name="species_bank_export_success">Banco de especies listo para compartir.</string>
+    <string name="species_bank_export_error">No se pudo exportar el banco de especies.</string>
+    <string name="species_bank_share_title">Compartir banco de especies</string>
+    <string name="species_gallery_title">Galería de especies</string>
+    <string name="species_gallery_back_button">Volver a Banco de especies</string>
+    <string name="species_list_title">Especies encontradas</string>
+    <string name="species_list_back_button">Volver a Banco de especies</string>
+    <string name="species_viewer_close">Cerrar visor</string>
+    <string name="species_viewer_image">Imagen del árbol seleccionado</string>
 </resources>
 

@@ -27,19 +27,29 @@
                 android:resource="@xml/filepaths" />
         </provider>
 
+        <activity android:name=".AboutActivity" />
         <activity android:name=".ConfiguracionesActivity" />
+        <activity android:name=".FullScreenGalleryActivity"
+            android:theme="@style/Theme.ArbolesApp" />
+        <activity android:name=".SpeciesGalleryActivity" />
+        <activity android:name=".SpeciesListActivity" />
         <activity android:name=".BancoEspeciesActivity" />
         <activity android:name=".EditarProyectoActivity" />
         <activity android:name=".EditarRegistroActivity" />
         <activity android:name=".GaleriaProyectoActivity" />
         <activity android:name=".CapturaArbolActivity" />
         <activity android:name=".CrearProyectoActivity" />
-        <activity android:name=".MainActivity"
-            android:exported="true">
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.ArbolesApp">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
     </application>
 </manifest>

@@ -1,4 +1,11 @@
-# Project exclude paths
+# Gradle build outputs
 /.gradle/
+/build/
 /app/build/
-/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/
+
+# IDE configuration
+/.idea/
+*.iml
+
+# Local machine settings
+/local.properties

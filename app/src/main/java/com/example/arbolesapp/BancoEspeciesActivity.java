@@ -105,7 +105,7 @@ public class BancoEspeciesActivity extends AppCompatActivity {
         Collections.sort(nuevasFotos, (p1, p2) -> {
             int comp = p1.species.compareToIgnoreCase(p2.species);
             if (comp == 0) {
-                return p1.file.getName().compareToIgnoreCase(p2.file.getName());
+                return p1.getFileName().compareToIgnoreCase(p2.getFileName());
             }
             return comp;
         });

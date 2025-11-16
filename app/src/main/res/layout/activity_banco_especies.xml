@@ -56,15 +56,6 @@
             android:text="@string/species_bank_back_button"
             android:layout_marginBottom="16dp" />
 
-        <TextView
-            android:id="@+id/textResultados"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/species_bank_results_placeholder"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:gravity="center_horizontal"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="16dp" />
 
     </LinearLayout>
 </ScrollView>

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:backgroundTint="@color/ic_launcher_background"
     android:padding="24dp">
 
     <androidx.constraintlayout.widget.Guideline
@@ -92,10 +93,10 @@
         android:drawablePadding="1dp"
         android:gravity="center"
         android:padding="8dp"
+        android:text="@string/configuraciones"
         android:textColor="@color/teal_700"
         android:textColorLink="@color/teal_200"
         android:textSize="15dp"
-        android:text="@string/configuraciones"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
@@ -108,9 +109,12 @@
         android:id="@+id/imageView"
         android:layout_width="219dp"
         android:layout_height="80dp"
-        app:srcCompat="@drawable/logo_cortado"
-        tools:layout_editor_absoluteX="74dp"
-        tools:layout_editor_absoluteY="578dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnConfiguraciones"
+        app:layout_constraintVertical_bias="0.757"
+        app:srcCompat="@drawable/logo_cortado" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

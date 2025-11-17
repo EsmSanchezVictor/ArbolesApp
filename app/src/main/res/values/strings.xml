@@ -79,7 +79,7 @@
     <string name="species_bank_list_button">Listar especies en los proyectos</string>
     <string name="species_bank_export_button">Exportar banco de especies</string>
     <string name="species_bank_back_button">Volver</string>
-    <string name="species_bank_results_placeholder">Resultados disponibles</string>
+    <string name="species_bank_results_placeholder">Resultados disponibles sobre los proyectos</string>
     <string name="species_bank_results_empty">No se encontraron imágenes para mostrar.</string>
     <string name="species_bank_no_species">Aún no hay especies registradas.</string>
     <string name="species_bank_loading_error">No se pudo acceder al banco de especies.</string>

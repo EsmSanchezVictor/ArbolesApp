@@ -20,15 +20,20 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.5" />
 
+
     <Button
         android:id="@+id/btnNuevoProyecto"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:drawableTop="@android:drawable/ic_menu_add"
-        android:drawablePadding="8dp"
+        android:backgroundTint="@color/ic_launcher_background"
+        android:drawableTop="@drawable/chatgpt_image_16_nov_2025__21_01_49"
+        android:drawablePadding="1dp"
         android:gravity="center"
-        android:padding="16dp"
+        android:padding="8dp"
         android:text="@string/nuevo_proyecto"
+        android:textColor="@color/teal_700"
+        android:textSize="15sp"
+        app:iconSize="@dimen/cardview_default_elevation"
         app:layout_constraintBottom_toTopOf="@id/guideline_horizontal"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toStartOf="@id/guideline_vertical"
@@ -37,16 +42,19 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.912" />
 
-
     <Button
         android:id="@+id/btnEditarProyecto"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:drawableTop="@android:drawable/ic_menu_edit"
-        android:drawablePadding="8dp"
+        android:backgroundTint="@color/ic_launcher_background"
+        android:drawableTop="@drawable/chatgpt_image_16_nov_2025__21_00_48"
+        android:drawablePadding="1dp"
         android:gravity="center"
-        android:padding="16dp"
+        android:padding="8dp"
         android:text="@string/editar_proyecto"
+        android:textColor="@color/teal_700"
+        android:textColorLink="@color/teal_200"
+        android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@id/guideline_horizontal"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
@@ -59,11 +67,14 @@
         android:id="@+id/btnBancoEspecies"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:drawableTop="@android:drawable/ic_menu_gallery"
-        android:drawablePadding="8dp"
+        android:backgroundTint="@color/ic_launcher_background"
+        android:drawableTop="@drawable/chatgpt_image_16_nov_2025__20_59_24"
+        android:drawablePadding="1dp"
         android:gravity="center"
-        android:padding="16dp"
+        android:padding="8dp"
         android:text="@string/banco_especies"
+        android:textColor="@color/teal_700"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toStartOf="@id/guideline_vertical"
@@ -76,10 +87,14 @@
         android:id="@+id/btnConfiguraciones"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:drawableTop="@android:drawable/ic_menu_manage"
-        android:drawablePadding="8dp"
+        android:backgroundTint="@color/ic_launcher_background"
+        android:drawableTop="@drawable/chatgpt_image_16_nov_2025__20_59_28"
+        android:drawablePadding="1dp"
         android:gravity="center"
-        android:padding="16dp"
+        android:padding="8dp"
+        android:textColor="@color/teal_700"
+        android:textColorLink="@color/teal_200"
+        android:textSize="15dp"
         android:text="@string/configuraciones"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1:1"
@@ -88,6 +103,14 @@
         app:layout_constraintStart_toEndOf="@id/guideline_vertical"
         app:layout_constraintTop_toBottomOf="@id/guideline_horizontal"
         app:layout_constraintVertical_bias="0.081" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="219dp"
+        android:layout_height="80dp"
+        app:srcCompat="@drawable/logo_cortado"
+        tools:layout_editor_absoluteX="74dp"
+        tools:layout_editor_absoluteY="578dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

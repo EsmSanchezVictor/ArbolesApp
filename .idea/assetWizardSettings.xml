@@ -92,7 +92,8 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="G:\ChatGPT Image 16 nov 2025, 21_01_49.png" />
+                                                <entry key="imagePath" value="C:\Users\ESM Lab 00\Pictures\P\ChatGPT Image 16 nov 2025, 21_00_48.png" />
+                                                <entry key="scalingPercent" value="142" />
                                                 <entry key="trimmed" value="true" />
                                               </map>
                                             </option>
@@ -304,6 +305,11 @@
                 </map>
               </option>
             </PersistentState>
+          </value>
+        </entry>
+        <entry key="vectorWizard">
+          <value>
+            <PersistentState />
           </value>
         </entry>
       </map>

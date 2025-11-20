@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.FileProvider;
 
 import com.example.arbolesapp.ui.RouteMapView;
@@ -67,7 +68,7 @@ public class RecorridoActivity extends AppCompatActivity {
 
         cargarPuntos();
 
-        exportButton.setOnClickListener(v -> exportarKmz());
+        exportButton.setOnClickListener(v -> mostrarOpcionesExportacion());
     }
 
     private void cargarPuntos() {
@@ -92,7 +93,22 @@ public class RecorridoActivity extends AppCompatActivity {
         }
     }
 
-    private void exportarKmz() {
+    private void mostrarOpcionesExportacion() {
+        if (puntos.isEmpty()) {
+            Toast.makeText(this, R.string.route_no_points, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.route_export)
+                .setMessage(R.string.route_export_choose_images)
+                .setPositiveButton(R.string.route_export_with_images, (dialog, which) -> exportarKmz(true))
+                .setNegativeButton(R.string.route_export_without_images, (dialog, which) -> exportarKmz(false))
+                .setNeutralButton(R.string.cancelar, null)
+                .show();
+    }
+
+    private void exportarKmz(boolean includeImages) {
         if (puntos.isEmpty()) {
             Toast.makeText(this, R.string.route_no_points, Toast.LENGTH_SHORT).show();
             return;
@@ -102,7 +118,7 @@ public class RecorridoActivity extends AppCompatActivity {
         exportButton.setEnabled(false);
 
         new Thread(() -> {
-            File kmz = crearKmz();
+            File kmz = crearKmz(includeImages);
             runOnUiThread(() -> {
                 progressBar.setVisibility(View.GONE);
                 exportButton.setEnabled(true);
@@ -116,39 +132,43 @@ public class RecorridoActivity extends AppCompatActivity {
         }).start();
     }
 
-    private File crearKmz() {
+    private File crearKmz(boolean includeImages) {
         try {
             String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
             File kmzFile = new File(rutaCarpeta, proyecto + "_recorrido_" + timestamp + ".kmz");
 
             try (ZipOutputStream zipOut = new ZipOutputStream(new FileOutputStream(kmzFile))) {
                 zipOut.putNextEntry(new ZipEntry("doc.kml"));
-                String kml = buildKml();
+                String kml = buildKml(includeImages);
                 zipOut.write(kml.getBytes(StandardCharsets.UTF_8));
                 zipOut.closeEntry();
 
                 Set<String> addedImages = new HashSet<>();
-                for (ExcelHelper.TreePoint punto : puntos) {
-                    if (punto.archivoFoto == null || punto.archivoFoto.trim().isEmpty()) {
-                        continue;
-                    }
-                    if (addedImages.contains(punto.archivoFoto)) {
-                        continue;
-                    }
-                    File foto = new File(rutaCarpeta, punto.archivoFoto);
-                    if (!foto.exists()) {
-                        continue;
-                    }
-                    addedImages.add(punto.archivoFoto);
-                    zipOut.putNextEntry(new ZipEntry("images/" + punto.archivoFoto));
-                    try (FileInputStream fis = new FileInputStream(foto)) {
-                        byte[] buffer = new byte[4096];
-                        int len;
-                        while ((len = fis.read(buffer)) > 0) {
-                            zipOut.write(buffer, 0, len);
+                if (includeImages) {
+                    for (ExcelHelper.TreePoint punto : puntos) {
+                        if (punto.archivoFoto == null || punto.archivoFoto.trim().isEmpty()) {
+                            continue;
                         }
-                    }
-                    zipOut.closeEntry();
+                        if (addedImages.contains(punto.archivoFoto)) {
+                            continue;
+                        }
+                        File foto = new File(rutaCarpeta, punto.archivoFoto);
+                        if (!foto.exists()) {
+                            continue;
+                        }
+                        addedImages.add(punto.archivoFoto);
+                        zipOut.putNextEntry(new ZipEntry("images/" + punto.archivoFoto));
+                        try (FileInputStream fis = new FileInputStream(foto)) {
+                            byte[] buffer = new byte[4096];
+                            int len;
+                            while ((len = fis.read(buffer)) > 0) {
+                                zipOut.write(buffer, 0, len);
+                            }
+                        }
+                        zipOut.closeEntry();
+                        }
+
+
                 }
             }
 
@@ -168,7 +188,7 @@ public class RecorridoActivity extends AppCompatActivity {
         startActivity(Intent.createChooser(shareIntent, getString(R.string.route_share_title)));
     }
 
-    private String buildKml() throws IOException {
+    private String buildKml(boolean includeImages) throws IOException {
         Map<String, String> speciesStyleMap = new HashMap<>();
         StringBuilder styles = new StringBuilder();
 
@@ -195,7 +215,7 @@ public class RecorridoActivity extends AppCompatActivity {
         for (ExcelHelper.TreePoint punto : puntos) {
             String especie = punto.especie == null || punto.especie.isEmpty() ? "Especie" : punto.especie;
             String styleId = speciesStyleMap.get(especie);
-            String descripcion = buildDescription(punto);
+            String descripcion = buildDescription(punto, includeImages);
             placemarks.append("    <Placemark>\n")
                     .append("      <name>").append(escape(especie)).append("</name>\n")
                     .append(styleId == null ? "" : "      <styleUrl>#" + styleId + "</styleUrl>\n")
@@ -217,13 +237,13 @@ public class RecorridoActivity extends AppCompatActivity {
         return kml.toString();
     }
 
-    private String buildDescription(ExcelHelper.TreePoint punto) {
+    private String buildDescription(ExcelHelper.TreePoint punto, boolean includeImages) {
         StringBuilder desc = new StringBuilder();
         desc.append("<p><b>Especie:</b> ").append(escape(punto.especie)).append("</p>")
                 .append("<p><b>Altura:</b> ").append(escape(punto.altura)).append("</p>")
                 .append("<p><b>Radio de copa:</b> ").append(escape(punto.radioCopa)).append("</p>")
                 .append("<p><b>Forma:</b> ").append(escape(punto.formaCopa)).append("</p>");
-        if (punto.archivoFoto != null && !punto.archivoFoto.trim().isEmpty()) {
+        if (includeImages && punto.archivoFoto != null && !punto.archivoFoto.trim().isEmpty()) {
             desc.append("<p><b>Imagen:</b><br/><img src=\"images/")
                     .append(escape(punto.archivoFoto)).append("\" width=\"400\"/></p>");
         }

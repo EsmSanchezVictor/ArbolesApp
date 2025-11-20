@@ -100,7 +100,9 @@
     <string name="route_export">Exportar recorrido KML/KMZ</string>
     <string name="route_empty_state">Aún no hay puntos con GPS para este proyecto</string>
     <string name="route_no_points">No hay puntos con GPS para exportar</string>
-    <string name="route_export_error">No se pudo generar el archivo KMZ</string>
+    <string name="route_export_no_images">Exportar recorrido sin imágenes (KML)</string>
+    <string name="route_export_error">No se pudo generar el archivo de recorrido</string>
+    <string name="route_points_summary">Puntos registrados: %1$d</string>
     <string name="route_share_title">Compartir recorrido</string>
 </resources>
 

@@ -96,5 +96,11 @@
     <string name="species_list_back_button">Volver a Banco de especies</string>
     <string name="species_viewer_close">Cerrar visor</string>
     <string name="species_viewer_image">Imagen del árbol seleccionado</string>
+    <string name="route_view">Ver recorrido</string>
+    <string name="route_export">Exportar recorrido KML/KMZ</string>
+    <string name="route_empty_state">Aún no hay puntos con GPS para este proyecto</string>
+    <string name="route_no_points">No hay puntos con GPS para exportar</string>
+    <string name="route_export_error">No se pudo generar el archivo KMZ</string>
+    <string name="route_share_title">Compartir recorrido</string>
 </resources>
 

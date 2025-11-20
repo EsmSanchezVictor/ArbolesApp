@@ -33,6 +33,7 @@
         <activity android:name=".SpeciesGalleryActivity" />
         <activity android:name=".SpeciesListActivity" />
         <activity android:name=".BancoEspeciesActivity" />
+        <activity android:name=".RecorridoActivity" />
         <activity android:name=".EditarProyectoActivity" />
         <activity android:name=".EditarRegistroActivity" />
         <activity android:name=".GaleriaProyectoActivity" />

@@ -12,7 +12,7 @@ import androidx.core.content.FileProvider;
 import com.example.arbolesapp.utils.ExcelHelper;
 import com.example.arbolesapp.utils.GPSUtils;
 import java.io.File;
-import android.text.TextUtils;
+
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -35,7 +35,7 @@ public class CapturaArbolActivity extends AppCompatActivity {
     private ImageView imgPreview;
     private EditText etEspecie, etAltura, etRadioCopa;
     private Spinner spFormaCopa;
-    private Button btnTomarFoto, btnMarcarGPS, btnAceptar, btnNuevaCaptura, btnTerminar;
+    private Button btnTomarFoto, btnMarcarGPS, btnAceptar, btnNuevaCaptura, btnTerminar, btnVerRecorrido;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +61,7 @@ public class CapturaArbolActivity extends AppCompatActivity {
         btnAceptar = findViewById(R.id.btnAceptar);
         btnNuevaCaptura = findViewById(R.id.btnNuevaCaptura);
         btnTerminar = findViewById(R.id.btnTerminar);
+        btnVerRecorrido = findViewById(R.id.btnVerRecorrido);
 
         btnAceptar.setVisibility(View.GONE);
         btnNuevaCaptura.setVisibility(View.GONE);
@@ -90,6 +91,8 @@ public class CapturaArbolActivity extends AppCompatActivity {
         btnTerminar.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) { finish(); }
         });
+
+        btnVerRecorrido.setOnClickListener(v -> abrirRecorrido());
     }
 
     private void tomarFoto() {
@@ -247,6 +250,13 @@ public class CapturaArbolActivity extends AppCompatActivity {
         btnAceptar.setVisibility(View.GONE);
         btnNuevaCaptura.setVisibility(View.VISIBLE);
         btnTerminar.setVisibility(View.VISIBLE);
+    }
+
+    private void abrirRecorrido() {
+        Intent intent = new Intent(this, RecorridoActivity.class);
+        intent.putExtra(RecorridoActivity.EXTRA_PROYECTO, proyecto);
+        intent.putExtra(RecorridoActivity.EXTRA_RUTA_CARPETA, rutaCarpeta);
+        startActivity(intent);
     }
 
     @Override

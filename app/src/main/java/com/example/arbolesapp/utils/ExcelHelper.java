@@ -29,6 +29,26 @@ public class ExcelHelper {
             this.formaCopa = formaCopa;
         }
     }
+    public static class TreePoint {
+        public final String especie;
+        public final String altura;
+        public final String radioCopa;
+        public final String formaCopa;
+        public final double latitud;
+        public final double longitud;
+        public final String archivoFoto;
+
+        public TreePoint(String especie, String altura, String radioCopa, String formaCopa,
+                         double latitud, double longitud, String archivoFoto) {
+            this.especie = especie;
+            this.altura = altura;
+            this.radioCopa = radioCopa;
+            this.formaCopa = formaCopa;
+            this.latitud = latitud;
+            this.longitud = longitud;
+            this.archivoFoto = archivoFoto;
+        }
+    }
 
     public static boolean crearArchivoExcel(File carpeta, String nombreProyecto) {
 
@@ -164,6 +184,39 @@ public class ExcelHelper {
             return false;
         }
     }
+    public static java.util.List<TreePoint> leerRegistros(File archivoExcel) {
+        java.util.List<TreePoint> registros = new java.util.ArrayList<>();
+        if (archivoExcel == null || !archivoExcel.exists()) {
+            Log.e("ExcelHelper", "El archivo de Excel no existe para leer registros de recorrido");
+            return registros;
+        }
+
+        DataFormatter formatter = new DataFormatter();
+        try (FileInputStream inputStream = new FileInputStream(archivoExcel);
+             Workbook workbook = WorkbookFactory.create(inputStream)) {
+            Sheet sheet = workbook.getSheetAt(0);
+            for (Row row : sheet) {
+                if (row == null || row.getRowNum() == 0) {
+                    continue;
+                }
+
+                String especie = getStringValue(row, 2, formatter);
+                String altura = getStringValue(row, 3, formatter);
+                String radioCopa = getStringValue(row, 4, formatter);
+                String formaCopa = getStringValue(row, 5, formatter);
+
+                double latitud = getNumericValue(row, 6);
+                double longitud = getNumericValue(row, 7);
+                String archivoFoto = getStringValue(row, 8, formatter);
+
+                registros.add(new TreePoint(especie, altura, radioCopa, formaCopa, latitud, longitud, archivoFoto));
+            }
+        } catch (Exception e) {
+            Log.e("ExcelHelper", "Error al leer registros", e);
+        }
+
+        return registros;
+    }
 
     private static String getStringValue(Row row, int columnIndex, DataFormatter formatter) {
         if (row == null) {
@@ -171,5 +224,23 @@ public class ExcelHelper {
         }
         Cell cell = row.getCell(columnIndex);
         return cell == null ? "" : formatter.formatCellValue(cell);
+    }
+    private static double getNumericValue(Row row, int columnIndex) {
+        if (row == null) {
+            return 0.0;
+        }
+        Cell cell = row.getCell(columnIndex, MissingCellPolicy.CREATE_NULL_AS_BLANK);
+        switch (cell.getCellType()) {
+            case NUMERIC:
+                return cell.getNumericCellValue();
+            case STRING:
+                try {
+                    return Double.parseDouble(cell.getStringCellValue());
+                } catch (NumberFormatException e) {
+                    return 0.0;
+                }
+            default:
+                return 0.0;
+        }
     }
 }

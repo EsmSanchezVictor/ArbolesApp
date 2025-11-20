@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">TreeMap</string>
     <string name="nuevo_proyecto">Nuevo Proyecto</string>
+    <string name="proyectos_existentes">Proyectos creados</string>
+    <string name="sin_proyectos">No hay proyectos creados todavía</string>
     <string name="editar_proyecto">Editar Proyecto</string>
     <string name="banco_especies">Banco de Especies</string>
     <string name="configuraciones">Configuraciones</string>

@@ -10,4 +10,4 @@
     android:ellipsize="end"
     android:maxLines="1"
     android:gravity="center_vertical"
-    android:background="?attr/selectableItemBackground" />
+    android:background="@android:color/white"/>

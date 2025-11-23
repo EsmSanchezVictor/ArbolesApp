@@ -9,5 +9,5 @@
     android:textStyle="bold"
     android:ellipsize="end"
     android:maxLines="1"
-    android:background="?attr/selectableItemBackground"
+    android:background="@android:color/white"
     android:textAppearance="@android:style/TextAppearance.Material.Medium" />

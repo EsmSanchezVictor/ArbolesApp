@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@android:color/white"
     android:padding="24dp">
 
     <Switch
@@ -18,6 +19,7 @@
         android:hint="@string/config_prefijo_foto"
         android:inputType="textCapCharacters"
         android:maxLength="20"
+        android:background="@color/material_dynamic_secondary80"
         android:layout_marginTop="16dp" />
 
     <Button
